@@ -1,0 +1,30 @@
+{% include 'partials/header.twig' %}
+
+<main>
+    <h2>Welcome to the SMS Uploading Tool</h2>
+    <p>Please Upload your File here</p>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-8">
+            <div class="card card-flat">
+                <div class="card-header">
+                    <h2 class="mb-0">File Uploader</h2>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div>
+                            <p class="mb-2">File uploader for SMS files only!</p>
+                            <label for="file">SMS File Upload:</label>
+                            <input type="file" id="sms-file" name="sms-file" accept=".json,application/json"/>
+                        </div>
+                        <div>
+                            <input type="submit" id="submit" name="submit"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include 'partials/footer.twig' %}

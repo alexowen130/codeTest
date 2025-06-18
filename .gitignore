@@ -1,7 +1,11 @@
 .idea/
 .vscode/
 /coverage/
+node_modules/
 /vendor/
 /logs/*
 !/logs/README.md
 .phpunit.result.cache
+
+#Generated File on build
+public/js

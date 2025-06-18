@@ -1,5 +1,25 @@
 # README #
 
+### Requirements ###
+
+PHP 8.3  
+&nbsp;&nbsp;&nbsp;&nbsp; - Please make sure your PHP ini has file_uploads = On
+
+Node  
+NPM  
+Composer
+
+### Setup ###
+
+### Build ###
+To get the App running please call `build.bat` ... which will execute the build steps for you. 
+
+If you are not running a windows environment please copy the following commands into your terminal and to setup the app
+    
+    composer install
+    npm install
+    grunt
+
 
 ### Data Structure ###
 

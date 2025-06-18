@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Application\Handlers\HttpErrorHandler;
-use App\Application\Handlers\ShutdownHandler;
 use App\Application\ResponseEmitter\ResponseEmitter;
 use App\Application\Settings\SettingsInterface;
-use DI\ContainerBuilder;
-use Slim\Factory\AppFactory;
+use App\Application\Handlers\HttpErrorHandler;
+use App\Application\Handlers\ShutdownHandler;
 use Slim\Factory\ServerRequestCreatorFactory;
+use Slim\Views\Twig;
+use Twig\Loader\FilesystemLoader;
+use Slim\Factory\AppFactory;
+use DI\ContainerBuilder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -33,6 +35,11 @@ $repositories($containerBuilder);
 
 // Build PHP-DI Container instance
 $container = $containerBuilder->build();
+
+$container->set(Twig::class, function () {
+    $loader = new FilesystemLoader(__DIR__ . '/../views');
+    return new Twig($loader);
+});
 
 // Instantiate the app
 AppFactory::setContainer($container);
