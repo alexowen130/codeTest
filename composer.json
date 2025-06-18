@@ -11,6 +11,7 @@
         "slim/slim": "^4.10"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "jangregor/phpstan-prophecy": "^1.0.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/extension-installer": "^1.2.0",
@@ -34,9 +35,5 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "start": "php -S localhost:8080 -t public",
-        "test": "phpunit"
     }
 }
