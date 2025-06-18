@@ -26,5 +26,19 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
+
+        PDO::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+            $dbSettings = $settings->get('db');
+            $dsn = sprintf(
+                'mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4',
+                $dbSettings['host'],
+                $dbSettings['port'],
+                $dbSettings['database']
+            );
+            $pdo = new PDO($dsn, $dbSettings['username'], $dbSettings['password']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        },
     ]);
 };

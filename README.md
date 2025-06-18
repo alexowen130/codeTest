@@ -8,10 +8,11 @@ PHP 8.3
 Node  
 NPM  
 Composer
+MySQL
+MySQL Workbench
+
 
 ### Setup ###
-
-### Build ###
 To get the App running please call `build.bat` ... which will execute the build steps for you. 
 
 If you are not running a windows environment please copy the following commands into your terminal and to setup the app
@@ -20,6 +21,8 @@ If you are not running a windows environment please copy the following commands 
     npm install
     grunt
 
+If you are running this in a windows environment you need to run the `initialSetup.bat` file. if not please run the
+file in the scripts folder in numerical order.
 
 ### Data Structure ###
 

@@ -21,6 +21,13 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
+                'db' => [
+                    'host' => $_ENV['DB_HOST'] ?? 'localhost',
+                    'database' => $_ENV['DB_NAME'] ?? 'slimdb',
+                    'username' => $_ENV['DB_USER'] ?? 'slimuser',
+                    'password' => $_ENV['DB_PASS'] ?? 'slimpass',
+                    'port' => $_ENV['DB_PORT'] ?? 3306,
+                ]
             ]);
         }
     ]);

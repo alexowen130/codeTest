@@ -10,7 +10,8 @@
     "slim/psr7": "^1.5",
     "slim/slim": "^4.10",
     "slim/twig-view": "^3.4",
-    "ext-http": "*"
+    "vlucas/phpdotenv": "^5.0",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
