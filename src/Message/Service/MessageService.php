@@ -43,6 +43,9 @@ class MessageService
         $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
         $smsGroup = [];
+
+        // Loop through each item in JSON and validate the data is in the format expected
+        //TODO Provide a feedback system for applications that fail this check
         foreach ($data as $datum) {
             $smsGroup[] =  new SMS(
                 $datum['id'],
@@ -70,6 +73,9 @@ class MessageService
      * @return true
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     *
+     * Actual DB implementation hidden away as a private function as this doesn't need to be visable to anything
+     * outside of the class
      */
     private function insertSMSMessages(SMSGroup $group): true
     {

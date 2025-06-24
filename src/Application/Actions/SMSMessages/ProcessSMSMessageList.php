@@ -25,8 +25,10 @@ class ProcessSMSMessageList
 
     public function __invoke(Request $request, Response $response, $args): Response
     {
+        //Get the files Uploaded
         $uploadedFiles = $request->getUploadedFiles();
 
+        // Validate Files are there
         if (!isset($uploadedFiles['sms-file'])) {
             $response->getBody()->write('No file uploaded');
             return $response->withStatus(400);
@@ -38,6 +40,7 @@ class ProcessSMSMessageList
             $filename = $uploadedFile->getClientFilename();
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
+            //Check is file is a json file
             if (strtolower($extension) !== 'json') {
                 $response->getBody()->write('Invalid file type. Only JSON allowed.');
                 return $response->withStatus(400);
@@ -45,7 +48,9 @@ class ProcessSMSMessageList
 
             $data = file_get_contents($uploadedFile->getFilePath());
 
+            // Check the json file actually contains valid JSON
             if (json_validate($data)) {
+                // Insert into DB
                 $this->container->get('MessageService')->insertSMSJSON($data);
 
                 $response->getBody()->write('File uploaded successfully');
