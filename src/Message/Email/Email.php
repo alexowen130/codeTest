@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Message\SMS\Email;
+namespace App\Message\Email;
 
 use App\Message\Interfaces\MessageInterface;
 use App\Message\Abstract\AbstractMessage;

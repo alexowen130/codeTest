@@ -7,10 +7,18 @@ namespace App\Message\Enums;
 /**
  * Enum Defining all the Status' Allowed for Messages
  */
-enum MsgStatusEnum
+enum MsgStatusEnum: string
 {
-    case SENT;
-    case DELIVERED;
-    case FAILED;
-    case REJECTED;
+    case SENT = 'SENT';
+    case DELIVERED = 'DELIVERED';
+    case FAILED = 'FAILED';
+    case REJECTED = 'REJECTED';
+
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
 }

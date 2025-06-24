@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Application\Actions\SMSMessages\ProcessSMSMessageList;
-use App\Application\Actions\SMSMessages\UploadedSMSMessageList;
 use App\Application\Actions\SMSMessages\UploadSMSMessageList;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Psr\Http\Message\ServerRequestInterface as Request;
