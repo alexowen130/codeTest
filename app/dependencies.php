@@ -3,12 +3,15 @@
 declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
+use App\Message\Service\MessageService;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Slim\Views\Twig;
+use Twig\Loader\FilesystemLoader;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -40,5 +43,14 @@ return function (ContainerBuilder $containerBuilder) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         },
+
+        Twig::class => function (ContainerInterface $c) {
+            $loader = new FilesystemLoader(__DIR__ . '/../views');
+            return new Twig($loader);
+        },
+
+        MessageService::class => function (ContainerInterface $c) {
+            return new MessageService($c);
+        }
     ]);
 };

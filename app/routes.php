@@ -22,6 +22,6 @@ return static function (App $app) {
 
     $app->group('/sms', function (Group $group) {
         $group->get('/upload', UploadSMSMessageList::class);
-        $group->post('/upload', [ProcessSMSMessageList::class, 'upload']);
+        $group->post('/upload', ProcessSMSMessageList::class);
     });
 };

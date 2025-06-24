@@ -7,8 +7,6 @@ use App\Application\Settings\SettingsInterface;
 use App\Application\Handlers\HttpErrorHandler;
 use App\Application\Handlers\ShutdownHandler;
 use Slim\Factory\ServerRequestCreatorFactory;
-use Slim\Views\Twig;
-use Twig\Loader\FilesystemLoader;
 use Slim\Factory\AppFactory;
 use DI\ContainerBuilder;
 
@@ -39,11 +37,6 @@ $repositories($containerBuilder);
 
 // Build PHP-DI Container instance
 $container = $containerBuilder->build();
-
-$container->set(Twig::class, function () {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    return new Twig($loader);
-});
 
 // Instantiate the app
 AppFactory::setContainer($container);

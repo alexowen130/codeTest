@@ -6,13 +6,24 @@ namespace App\Application\Actions\SMSMessages;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Container\ContainerInterface;
 
 /**
  * Controller for uploading SMS Document to Database
  */
 class ProcessSMSMessageList
 {
-    public function upload(Request $request, Response $response, $args): Response
+    private ContainerInterface $container;
+
+    /**
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    public function __invoke(Request $request, Response $response, $args): Response
     {
         $uploadedFiles = $request->getUploadedFiles();
 
@@ -32,7 +43,14 @@ class ProcessSMSMessageList
                 return $response->withStatus(400);
             }
 
-            $uploadedFile->moveTo(__DIR__ . '/../../uploads/' . $filename);
+            $data = file_get_contents($uploadedFile->getFilePath());
+
+            if (json_validate($data)) {
+                $this->container->get('MessageService')->insertSMSJSON($data);
+
+                $response->getBody()->write('File uploaded successfully');
+                return $response;
+            }
 
             $response->getBody()->write('File uploaded successfully');
             return $response;
