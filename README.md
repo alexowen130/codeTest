@@ -58,4 +58,6 @@ new one eg.teacher Id
 ### Missing Code ###
 
 Given more time I would expand the code to use a Factory pattern to get the data out into Objects/Groups of Objects and
-use this to display to the screen
+use this to display to the screen.
+
+Also I would of given time like to have built unit tests to go along with this.
